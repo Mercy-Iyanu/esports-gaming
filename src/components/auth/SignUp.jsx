@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -20,9 +21,8 @@ export default function SignUp() {
   const [formData, setFormData] = useState({
     name: "",
     teamName: "",
-    school: "",
-    coachEmail: "",
-    inviteCode: "",
+    schoolName: "",
+    schoolEmail: "",
     role: "player",
   });
 
@@ -48,7 +48,7 @@ export default function SignUp() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Signup successful!");
+        toast.success("Signup successful!");
         navigate("/signin");
       } else {
         alert(data.message || "Signup failed");
@@ -100,31 +100,9 @@ export default function SignUp() {
           {roleType === "team" ? (
             <>
               <TextField
-                label="Team Name"
+                label="School Name"
                 fullWidth
-                name="teamName"
-                onChange={handleChange}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                label="School"
-                fullWidth
-                name="school"
-                onChange={handleChange}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                label="Coach Email Address"
-                fullWidth
-                name="coachEmail"
-                type="email"
-                onChange={handleChange}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                label="Invite Code (Optional)"
-                fullWidth
-                name="inviteCode"
+                name="name"
                 onChange={handleChange}
                 sx={{ mt: 2 }}
               />
@@ -135,26 +113,6 @@ export default function SignUp() {
                 label="Full Name"
                 fullWidth
                 name="name"
-                onChange={handleChange}
-                sx={{ mt: 2 }}
-              />
-              <TextField
-                select
-                label="Role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                SelectProps={{ native: true }}
-                fullWidth
-                sx={{ mt: 2 }}
-              >
-                <option value="player">Player</option>
-                <option value="coach">Coach</option>
-              </TextField>
-              <TextField
-                label="Invite Code (from team)"
-                fullWidth
-                name="inviteCode"
                 onChange={handleChange}
                 sx={{ mt: 2 }}
               />
