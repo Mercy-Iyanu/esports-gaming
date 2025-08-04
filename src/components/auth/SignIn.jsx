@@ -33,7 +33,7 @@ export default function SignIn() {
 
       if (res.ok) {
         localStorage.setItem("user", JSON.stringify(data));
-        navigate("/home");
+        navigate("/");
       } else {
         alert(data.message || "Login failed");
       }

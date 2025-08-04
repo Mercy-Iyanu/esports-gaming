@@ -49,16 +49,6 @@ const TopNavBar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-      setTime(now.toLocaleTimeString("en-GB", { hour12: false }));
-    };
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <AppBar position="static" sx={{ backgroundColor: "#0e0e0e" }}>
       <Toolbar
@@ -66,22 +56,20 @@ const TopNavBar = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          px: 2,
         }}
       >
         <Box>
           <Typography
             variant="h6"
             component={Link}
-            to="/home"
+            to="/"
             sx={{
               textDecoration: "none",
               color: "#fff",
               fontWeight: "bold",
-              fontFamily: "monospace",
             }}
           >
-            EDU sports
+            Flavour!
           </Typography>
         </Box>
 
@@ -89,14 +77,8 @@ const TopNavBar = () => {
           <Button color="inherit" component={Link} to="/games">
             Games
           </Button>
-          <Button color="inherit" component={Link} to="/tournaments">
-            Tournaments
-          </Button>
           <Button color="inherit" component={Link} to="/teams">
             Teams
-          </Button>
-          <Button color="inherit" component={Link} to="/account">
-            My Account
           </Button>
         </Box>
 
@@ -122,8 +104,11 @@ const TopNavBar = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
               >
-                <MenuItem disabled>{user.name || "No Name"}</MenuItem>
-                <MenuItem disabled>{user.email}</MenuItem>
+                <MenuItem>{user.name}</MenuItem>
+                <MenuItem>{user.email}</MenuItem>
+                <MenuItem component={Link} to="/profile">
+                  View Profile
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>
                   <LogoutIcon fontSize="small" sx={{ mr: 1 }} /> Logout
                 </MenuItem>

@@ -17,7 +17,7 @@ import {
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-export default function MyAccount() {
+export default function Profile() {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({});
